@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link href="css/index.css" rel="stylesheet">
+
+    <title>Inventory Panel</title>
+</head>
+
+<body style="overflow: hidden;">
+    <!-- As a heading -->
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Inventory Panel</span>
+        </div>
+    </nav>
+
+    <div class="row fullHeight">
+        <div class="col-2" style="padding:0;">
+            <div class="container fullHeight" style="background-color:rgb(243, 243, 243);padding-top: 25px;">
+                <div class="row">
+                    <div class="col-10"></div>
+                    <div class="col-2">
+                        <h5 id="addInventory">+</h5>
+                    </div>
+                </div>
+                <hr>
+                <!-- Inventory Information will be placed here -->
+                <div id="inventoryListng">
+                    <div onclick="viewInventory(this);" class="row inventory p-1">
+                        <div class="col-10">
+                            <h5>Inventory 1</h5>
+                        </div>
+                        <div class="col-2">
+                            <img width="10" src="assets/arrow-point-to-right.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-10 d-flex justify-content-center align-items-center" style="flex-direction: column;">
+            <div id="no_inventory" class="text-center">
+                <img width="100" height="100" src="assets/exclamation-mark-not-found.jpeg">
+                <h3>No Inventory Selected</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
