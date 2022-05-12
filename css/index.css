@@ -3,6 +3,10 @@ html, body, .fullHeight {
     height: 100%;
 }
 
+*{
+    font-family: Helvetica, sans-serif;
+}
+
 #addInventory:hover{
     text-shadow: 0px 0px 5px red;
     cursor:pointer;
@@ -16,4 +20,17 @@ html, body, .fullHeight {
 .inventory{
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+}
+
+.no_inventory_msg_styling{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#inventory_information{
+    width:500px;
+    background-color:rgb(243, 243, 243);
+    border-radius: 10px;
 }
