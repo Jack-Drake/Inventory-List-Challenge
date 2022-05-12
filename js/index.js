@@ -7,7 +7,7 @@ function viewInventory(e){
     //document.getElementById('no_inventory_msg').parentElement.classList.toggle('no_inventory_msg_styling');
 
     //show the inventory information div
-    document.getElementById('inventory_information').classList.toggle('d-none');
+    document.getElementById('inventory_information').classList.remove('d-none');
 
     //retrieve the data from the server ajax call
 
@@ -35,7 +35,19 @@ function editInventory(){
 
 function saveInventory(){
     //get the values from the inputs and undo edit inventory back to actual text
-    
+    var newValueQuantity = document.getElementById('inventory_quantity').children[0].value;
+    var newValueDescription = document.getElementById('inventory_description').children[0].value;
+    var newValueLocation = document.getElementById('inventory_location').children[0].value;
+
+    console.log(newValueQuantity);
+    //change the inputs back to their original form
+    document.getElementById('inventory_quantity').innerHTML = newValueQuantity;
+    document.getElementById('inventory_description').innerHTML = newValueDescription;
+    document.getElementById('inventory_location').innerHTML = newValueLocation;
+
+    //hide save button and edit button
+    document.getElementById('edit_Inventory').classList.toggle('d-none');
+    document.getElementById('save_Inventory').classList.toggle('d-none');
 
     //make ajax call
 }
