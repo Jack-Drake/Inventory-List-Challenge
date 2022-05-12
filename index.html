@@ -47,11 +47,11 @@
             </div>
         </div>
         <div class="col-10 no_inventory_msg_styling">
-            <div id="no_inventory_msg" class="text-center d-none">
+            <div id="no_inventory_msg" class="text-center">
                 <img width="100" height="100" src="assets/exclamation-mark-not-found.jpeg">
                 <h3>No Inventory Selected</h3>
             </div>
-            <div id="inventory_information" class="p-3">
+            <div id="inventory_information" class="p-3 d-none">
                 <h2 class="text-center">Inventory 1</h2>
 
                 <!-- quantity -->
@@ -60,28 +60,33 @@
                         <h5><strong>Quantity</strong></h5>
                     </div>
                     <div class="col text-end">
-                        <h5><strong>20</strong></h5>
+                        <h6 id="inventory_quantity">20</h6>
                     </div>
                 </div>
-
+                <hr>
                 <!-- description -->
                 <div class="row pt-2">
                     <div class="col-12">
                         <h5><strong>Description</strong></h5>
                     </div>
                     <div class="col-12 text-left">
-                        <p>20</p>
+                        <h6 id="inventory_description">20</h6>
                     </div>
                 </div>
-
+                <hr>
                 <div class="row pt-2">
                     <div class="col">
-                        <h5><strong>Location</strong></h5>
+                        <h5><strong>Warehouse/Location</strong></h5>
                     </div>
                     <div class="col text-end">
-                        <h5><strong>20</strong></h5>
+                        <h6 id="inventory_location">20</h6>
                     </div>
                 </div>
+                <hr>
+
+                <!-- edit button -->
+                <button onclick="editInventory()" id="edit_Inventory" class="form-control d-relative" type="button">Edit</button>
+                <button id="save_Inventory" class="form-control d-none"type="button">Save</button>
             </div>
         </div>
     </div>
