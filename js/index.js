@@ -1,4 +1,4 @@
-function viewInventory(e){
+function viewInventory(e) {
     //change to selected
     e.style.backgroundColor = "#42A5F5";
 
@@ -9,15 +9,28 @@ function viewInventory(e){
     //show the inventory information div
     document.getElementById('inventory_information').classList.remove('d-none');
 
+    //inventory id from the side panel
+    var inventoryId = 111;
+
     //retrieve the data from the server ajax call
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            //response text
+            console.log(this.responseText);
+        }
+    };
 
+    //send the request
+    xhttp.open("POST", "php/index.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("type=1&inventoryId=" + inventoryId);
 
-    //get ID from ajax call and set edit and save buttons to their values
-    document.getElementById('edit_Inventory').value = "111";
-    document.getElementById('save_Inventory').value = "111";
+    //get ID from ajax call and set save buttons to their values
+    document.getElementById('save_Inventory').value = inventoryId;
 }
 
-function editInventory(){
+function editInventory() {
     //save their current values under the innerhtml
     var curValueQuantity = document.getElementById('inventory_quantity').innerHTML;
     var curValueDescription = document.getElementById('inventory_description').innerHTML;
@@ -33,13 +46,16 @@ function editInventory(){
     document.getElementById('save_Inventory').classList.toggle('d-none');
 }
 
-function saveInventory(){
+function saveInventory() {
+    //save inventory id
+    var inventoryId = document.getElementById('save_Inventory').value;
+
     //get the values from the inputs and undo edit inventory back to actual text
     var newValueQuantity = document.getElementById('inventory_quantity').children[0].value;
     var newValueDescription = document.getElementById('inventory_description').children[0].value;
     var newValueLocation = document.getElementById('inventory_location').children[0].value;
 
-    console.log(newValueQuantity);
+    //console.log(newValueQuantity);
     //change the inputs back to their original form
     document.getElementById('inventory_quantity').innerHTML = newValueQuantity;
     document.getElementById('inventory_description').innerHTML = newValueDescription;
@@ -50,4 +66,16 @@ function saveInventory(){
     document.getElementById('save_Inventory').classList.toggle('d-none');
 
     //make ajax call
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            //response text
+            console.log(this.responseText);
+        }
+    };
+
+    //send the request
+    xhttp.open("POST", "php/index.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("type=2&inventoryId=" + inventoryId + "&quantity=" + newValueQuantity + "&description=" + +"&location=" + newValueLocation);
 }
