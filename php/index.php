@@ -66,7 +66,7 @@ if (!empty($payload_uncleansed)) {
             }else{
                 $allInventory = array();
                 while($row = $result->fetchArray(SQLITE3_ASSOC)){
-                    array_push($allInventory, array($result['inventoryID'], $result['inventoryName']));
+                    array_push($allInventory, array($row['inventoryID'], $row['inventoryName']));
                 }
                 echo json_encode($allInventory);
             }
