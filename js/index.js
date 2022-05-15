@@ -1,3 +1,20 @@
+//load the side panel on window ready
+window.addEventListener('DOMContentLoaded', (event) => {
+    //retrieve the data from the server ajax call
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            //response text
+            console.log(this.responseText);
+        }
+    };
+
+    //send the request
+    xhttp.open("POST", "php/index.php", true);
+    xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+    xhttp.send(JSON.stringify({"type": 4}));
+});
+
 function viewInventory(e) {
     //change to selected
     e.style.backgroundColor = "#42A5F5";
@@ -23,11 +40,38 @@ function viewInventory(e) {
 
     //send the request
     xhttp.open("POST", "php/index.php", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("type=1&inventoryId=" + inventoryId);
+    xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+    xhttp.send(JSON.stringify({"type": 3, "inventoryId": inventoryId}));
 
     //get ID from ajax call and set save buttons to their values
     document.getElementById('save_Inventory').value = inventoryId;
+}
+
+function createInventory(){
+    //shows modal and collect the information that was written
+    var name = document.getElementById('create_inventory_name').children[0];
+    var quantity = document.getElementById('create_inventory_quantity').children[0];
+    var description = document.getElementById('create_inventory_description').children[0];
+    var location = document.getElementById('create_inventory_location').children[0];
+
+    //check that the fields are all filled
+    if(name.value == "" || quantity.value == "" || description.value == "" || location.value == ""){
+        return;
+    }
+
+    //make ajax call
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            //response text
+            console.log(this.responseText);
+        }
+    };
+
+    //send the request
+    xhttp.open("POST", "php/index.php", true);
+    xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+    xhttp.send(JSON.stringify({"type": 1, "name": name.value, "quantity": quantity.value, "description": description.value, "location": location.value}));
 }
 
 function editInventory() {
@@ -76,6 +120,6 @@ function saveInventory() {
 
     //send the request
     xhttp.open("POST", "php/index.php", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("type=2&inventoryId=" + inventoryId + "&quantity=" + newValueQuantity + "&description=" + +"&location=" + newValueLocation);
+    xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+    xhttp.send(JSON.stringify({"type": 2, "inventoryId": inventoryId, "quantity": newValueQuantity, "description": newValueDescription, "location": newValueLocation}));
 }

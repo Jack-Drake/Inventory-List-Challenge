@@ -29,7 +29,74 @@
                 <div class="row">
                     <div class="col-10"></div>
                     <div class="col-2">
-                        <h5 id="addInventory">+</h5>
+
+                        <!-- Button trigger modal -->
+
+                        <button type="button" style="border: none;" data-bs-toggle="modal"
+                            data-bs-target="#createNewInventory">
+                            <h5 id="addInventory">+</h5>
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="createNewInventory" data-bs-backdrop="static"
+                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Create New Inventory Modal</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- name of inventory -->
+                                        <div class="row pt-5">
+                                            <div class="col">
+                                                <h5><strong>Name</strong></h5>
+                                            </div>
+                                            <div class="col text-end">
+                                                <h6 id="create_inventory_name"><input class="form-control" type="text"></h6>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <!-- quantity -->
+                                        <div class="row pt-5">
+                                            <div class="col">
+                                                <h5><strong>Quantity</strong></h5>
+                                            </div>
+                                            <div class="col text-end">
+                                                <h6 id="create_inventory_quantity"><input class="form-control" type="number"></h6>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <!-- description -->
+                                        <div class="row pt-2">
+                                            <div class="col-12">
+                                                <h5><strong>Description</strong></h5>
+                                            </div>
+                                            <div class="col-12 text-left">
+                                                <h6 id="create_inventory_description"><textarea class="form-control" type="text"></textarea></h6>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row pt-2">
+                                            <div class="col">
+                                                <h5><strong>Warehouse/Location</strong></h5>
+                                            </div>
+                                            <div class="col text-end">
+                                                <h6 id="create_inventory_location"><input class="form-control" type="text"></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button onclick="createInventory();" data-bs-dismiss="modal" type="button" class="btn btn-primary">Create New Inventory</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <hr>
