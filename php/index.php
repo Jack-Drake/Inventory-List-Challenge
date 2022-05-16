@@ -35,25 +35,44 @@ $payload_uncleansed = @file_get_contents('php://input');
 if (!empty($payload_uncleansed)) {
     $json = json_decode($payload_uncleansed, true);
 
-
-
     //switch statement for identifying which type of request is being made
     switch ($json['type']) {
         case 1:
             //create Inventory
-            $insert = "INSERT INTO inventory VALUES('".date('YmdHis')."', '".$json['name']."', '".$json['quantity']."', '".$json['description']."', '".$json['location']."')";
+            $insert = "INSERT INTO inventory VALUES('" . date('YmdHis') . "', '" . $json['name'] . "', '" . $json['quantity'] . "', '" . $json['description'] . "', '" . $json['location'] . "')";
 
             $result = $db->exec($insert);
             if (!$result) {
                 echo $db->lastErrorMsg();
                 exit;
+            } else {
+                echo 1;
             }
             break;
         case 2:
+            //save Inventory
+            $update = "UPDATE inventory SET inventoryQuantity = ". $json['quantity'] .", inventoryDescription = '". $json['description'] ."', inventoryLocation = '". $json['location'] ."' WHERE inventoryID = '". $json['inventoryID'] ."'";
 
+            $result = $db->exec($update);
+            if (!$result) {
+                echo $db->lastErrorMsg();
+                exit;
+            } else {
+                echo 1;
+            }
             break;
         case 3:
+            //Select specific Inventory
+            $select = "SELECT * FROM inventory WHERE inventoryID = '" . $json['inventoryID'] . "'";
 
+            $result = $db->query($select);
+            if (!$result) {
+                echo $db->lastErrorMsg();
+                exit;
+            } else {
+                $row = $result->fetchArray(SQLITE3_ASSOC);
+                echo json_encode(array($row['inventoryID'], $row['inventoryName'], $row['inventoryQuantity'], $row['inventoryDescription'], $row['inventoryLocation']));
+            }
             break;
         case 4:
             //Select all Inventory
@@ -63,12 +82,24 @@ if (!empty($payload_uncleansed)) {
             if (!$result) {
                 echo $db->lastErrorMsg();
                 exit;
-            }else{
+            } else {
                 $allInventory = array();
-                while($row = $result->fetchArray(SQLITE3_ASSOC)){
+                while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
                     array_push($allInventory, array($row['inventoryID'], $row['inventoryName']));
                 }
                 echo json_encode($allInventory);
+            }
+            break;
+        case 5:
+            //delete Inventory
+            $delete = "DELETE FROM inventory WHERE inventoryID = '". $json['inventoryID'] ."'";
+
+            $result = $db->exec($delete);
+            if (!$result) {
+                echo $db->lastErrorMsg();
+                exit;
+            } else {
+                echo 1;
             }
             break;
     }
